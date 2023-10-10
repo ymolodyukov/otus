@@ -14,4 +14,7 @@ type DB interface {
 
 	// GetUserByID получение пользователя по ID
 	GetUserByID(ctx context.Context, userID string) (*dto.UserData, error)
+
+	// SearchUsers поиск пользователей по префексу имени и фамилии
+	SearchUsers(ctx context.Context, firstNamePrefix string, lastNamePrefix string) ([]*dto.UserData, error)
 }

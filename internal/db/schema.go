@@ -3,8 +3,8 @@ package db
 var Schema = `
 CREATE TABLE IF NOT EXISTS person (
     id varchar(36), 
-	first_name  varchar(50),
-	second_name varchar(50),
+	firstname  varchar(50),
+	lastname varchar(50),
 	age        integer,
 	sex        varchar(1),
 	biography  text ,

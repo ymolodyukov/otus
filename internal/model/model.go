@@ -28,25 +28,25 @@ type LoginData struct {
 }
 
 type UserData struct {
-	ID         string `json:"id,omitempty"`
-	FirstName  string `json:"first_name"`
-	SecondName string `json:"second_name"`
-	Age        int    `json:"age"`
-	Sex        string `json:"sex"`
-	Biography  string `json:"biography"`
-	City       string `json:"city"`
-	Password   string `json:"password,omitempty"`
+	ID        string `json:"id,omitempty"`
+	FirstName string `json:"first_name"`
+	LastName  string `json:"last_name"`
+	Age       int    `json:"age"`
+	Sex       string `json:"sex"`
+	Biography string `json:"biography"`
+	City      string `json:"city"`
+	Password  string `json:"password,omitempty"`
 }
 
 func UserDataFromDto(dtoData *dto.UserData) *UserData {
 	userData := &UserData{
-		ID:         dtoData.ID,
-		FirstName:  dtoData.FirstName,
-		SecondName: dtoData.SecondName,
-		Age:        dtoData.Age,
-		Sex:        dtoData.Sex,
-		Biography:  dtoData.Biography,
-		City:       dtoData.City,
+		ID:        dtoData.ID,
+		FirstName: dtoData.FirstName,
+		LastName:  dtoData.LastName,
+		Age:       dtoData.Age,
+		Sex:       dtoData.Sex,
+		Biography: dtoData.Biography,
+		City:      dtoData.City,
 	}
 
 	return userData
@@ -54,13 +54,13 @@ func UserDataFromDto(dtoData *dto.UserData) *UserData {
 
 func UserDataToDto(userData *UserData) *dto.UserData {
 	dbData := &dto.UserData{
-		ID:         userData.ID,
-		FirstName:  userData.FirstName,
-		SecondName: userData.SecondName,
-		Age:        userData.Age,
-		Sex:        userData.Sex,
-		Biography:  userData.Biography,
-		City:       userData.City,
+		ID:        userData.ID,
+		FirstName: userData.FirstName,
+		LastName:  userData.LastName,
+		Age:       userData.Age,
+		Sex:       userData.Sex,
+		Biography: userData.Biography,
+		City:      userData.City,
 	}
 
 	return dbData

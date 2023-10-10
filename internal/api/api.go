@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"io"
+	"log"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -107,6 +108,7 @@ func (x service) GetUserById(w http.ResponseWriter, r *http.Request) {
 		if errors.Is(err, otuserr.ErrNotFound) {
 			otuserr.SendNotFound(w)
 		} else {
+			log.Println(err)
 			otuserr.SendInternalServerError(w)
 		}
 
@@ -114,4 +116,31 @@ func (x service) GetUserById(w http.ResponseWriter, r *http.Request) {
 	}
 
 	otuserr.SendSuccess(w, userData)
+}
+
+func (x service) SearchUsers(w http.ResponseWriter, r *http.Request) {
+	query := r.URL.Query()
+
+	firstNamePrefix := query.Get("first_name")
+	lastNamePrefix := query.Get("last_name")
+
+	if err := validateSearchUsers(firstNamePrefix, lastNamePrefix); err != nil {
+		otuserr.SendBadRequest(w, err)
+
+		return
+	}
+
+	users, err := x.model.SearchUsers(r.Context(), firstNamePrefix, lastNamePrefix)
+	if err != nil {
+		if errors.Is(err, otuserr.ErrNotFound) {
+			otuserr.SendNotFound(w)
+		} else {
+			log.Println("[ERROR] " + err.Error())
+			otuserr.SendInternalServerError(w)
+		}
+
+		return
+	}
+
+	otuserr.SendSuccess(w, users)
 }

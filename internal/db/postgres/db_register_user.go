@@ -16,8 +16,8 @@ func (p *Person) RegisterUser(ctx context.Context, userData *dto.UserData, passw
 	userID := userUUID.String()
 	tx := p.DB.MustBegin()
 
-	query := "INSERT INTO person (id, first_name, second_name, age, sex, biography, city) VALUES ($1, $2, $3, $4, $5, $6, $7)"
-	tx.MustExec(query, userID, userData.FirstName, userData.SecondName, userData.Age, userData.Sex, userData.Biography, userData.City)
+	query := "INSERT INTO person (id, firstname, lastname, age, sex, biography, city) VALUES ($1, $2, $3, $4, $5, $6, $7)"
+	tx.MustExec(query, userID, userData.FirstName, userData.LastName, userData.Age, userData.Sex, userData.Biography, userData.City)
 
 	credID, err := uuid.NewUUID()
 	if err != nil {

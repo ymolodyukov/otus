@@ -30,6 +30,7 @@ func main() {
 	router.HandleFunc("/login", apiService.Login).Methods("POST")
 	router.HandleFunc("/user/register", apiService.RegisterUser).Methods("POST")
 	router.HandleFunc("/user/get/{id:[a-z0-9-]+}", apiService.GetUserById).Methods("GET")
+	router.HandleFunc("/user/search", apiService.SearchUsers).Methods("GET")
 
 	http.Handle("/", router)
 

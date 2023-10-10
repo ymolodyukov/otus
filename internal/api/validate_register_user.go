@@ -13,7 +13,7 @@ func validateRegisterUser(userData *model.UserData) error {
 	if userData.FirstName == "" {
 		return errors.New("empty first name")
 	}
-	if userData.SecondName == "" {
+	if userData.LastName == "" {
 		return errors.New("empty second name")
 	}
 	if userData.Age <= 0 {
